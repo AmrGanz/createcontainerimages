@@ -1,9 +1,11 @@
 #!/bin/bash
 
+## To be modified ##
 REGISTRY="quay.mylab.local/bigimages"
 CONTAINERS="2"
-COUNT=0
 BIGFILESIZE="1"
+####################
+
 
 echo "Creating a big file and a Dockerfile"
 
@@ -23,6 +25,9 @@ read INPUT
 if [[ $INPUT == "1" ]] ; then
 
         echo "Building container images"
+
+	COUNT=0
+
 	while [[ $COUNT -lt $CONTAINERS ]] ; do
 	
 		podman build --squash-all . -t $REGISTRY/my-test-image-$COUNT
@@ -56,6 +61,8 @@ elif [[ $INPUT == "2" ]] ; then
         echo "Building container images"
         CONTAINERS=5
 
+	COUNT=0
+
         while [[ $COUNT -lt $CONTAINERS ]] ; do
 
                 podman build --squash-all . -t my-test-image-$COUNT
@@ -67,6 +74,8 @@ elif [[ $INPUT == "3" ]] ; then
         echo "Building the deployment.yaml file"
 
         cp deployment_original.yaml deployment.yaml
+
+	COUNT=0
 
         while [[ $COUNT -lt $CONTAINERS ]] ; do
         cat >> deployment.yaml << EOL
