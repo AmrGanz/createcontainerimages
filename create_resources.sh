@@ -10,16 +10,9 @@ BIGFILESIZE="1"
 echo "Creating a big file and a Dockerfile"
 
 rm -f Dockerfile 2> /dev/null
-#fallocate -l ${BIGFILESIZE}M big-file
 fallocate -l ${BIGFILESIZE}G big-file
 
-#cat >> Dockerfile << EOL
-#FROM docker.io/library/alpine
-#COPY big-file .
-#RUN apk add --no-cache bash
-#EOL
 
-#echo -e "Choose the required action:\n 1: create both images and deployment.yaml\n 2: Create images only\n 3: Create deployment.yaml only\n 4: Delete created images and deployment.yaml file"
 echo -e "Choose the required action:\n 1: create both images and deployment.yaml\n 2: Create images only\n 3: Create deployment.yaml only"
 read INPUT
 
